@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- working title -->
+    <title>the doctor is in!</title>
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- including bootstrap just for the 'container' class & its grid -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="container">
+
+            <span class="navbar-brand navtext">the doctor is in! <i class="fa fa-user-md"
+                    style="font-size:36px"></i></span>
+            <span class="navbar-text navtext">
+                find local medical experts in your area!
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Page header -->
+        <div id="contents" class="jumbotron">
+
+            <h4>doctor search <i class="fa fa-search" style="font-size:24px"></i></h4>
+
+            <hr>
+
+
+            <!-- user input card -->
+            <!-- id say work on the functionality for this section, and then once we get that working we can add an "OR search by name" query section  -->
+
+            <div id="fill-out-form">
+                <div class="form-row">
+                    <div class="col-md-6 ">
+                        <label for="insuranceprovider">Insurance Provider</label>
+                        <!-- id="provider-input" -->
+                        <select type="provider" class="form-control selectpicker" id="provider-input">
+
+                                <option value=" ">I'll choose later</option>
+                             
+                                <option value="unitedhealthcare-uhcoptionsppo, 
+                                unitedhealthcare-uhcnavigatehmo, 
+                                unitedhealthcare-uhcmedicachoice, 
+                                unitedhealthcare-uhcnavigatepos, 
+                                unitedhealthcare-uhcchoicepluspos">
+                                    United Healthcare</option>
+
+                                    <option value="cigna-cignappo,
+                                    cigna-cignahmo,
+                                    cigna-cignaopenaccessplus,
+                                    cigna-cignalocalplus,
+                                    cigna-vision">
+                                        Cigna
+                                    </option>
+
+                                    <option value="aetna-aetnasignatureadministratorsppo,
+                                    aetna-aetnaadvantage6350hix,
+                                    aetna-aetnasavingsplusofaz,
+                                    aetna-aetnadmo,
+                                    aetna-aetnahealthnetworkoptionopenaccess,       
+                                    aetna-aetnahmo,     
+                                    aetna-aetnachoiceposii,
+                                    aetna-aetnaelectchoiceepo,
+                                    aetna-aetnadppo,   
+                                    aetna-aetnawholehealthprimecareoamcca,     
+                                    aetna-aetnawholehealthbannerhealthnetworkhmo,        
+                                    aetna-aetnabasichmo,
+                                    aetna-aetnaselect,
+                                    aetna-aetnasavingsplusofca,  
+                                    aetna-aetnabasichix,
+                                    aetna-aetnawholehealthprimecarehmoca,      
+                                    aetna-aetnawholehealthcoloradofrontrange,  
+                                    aetna-aetnahmodeductibleplancamembersonly,
+                                    aetna-aetnamanagedchoiceposopenaccess,     
+                                    aetna-aetnavitalidadpluscaconaetna,  
+                                    aetna-aetnachoiceposopenaccess,
+                                    aetna-aetnamdbronzesilverandgoldhmo">Aetna</option>
+
+                                <option data-divider="true"></option>
+
+                             
+
+
+                            <option value="amerihealth-amerihealthregionalprefntwkhmohmopos,
+                            amerihealth-amerihealthlocalvaluenetworkepoposppo,
+                            amerihealth-amerihealthlocalvaluenetworkhmohmopos,
+                            amerihealth-amerihealthregionalprefntwkepoposppo">Amerihealth</option>
+
+                      
+
+                            <option value="anthem-antheminpathwayxbronzedirectcacahix, 
+                            anthem-anthemcopathwayxenhancedinddirectaccess, 
+                            anthem-anthemohpathwayxtieredhospinddirectaccess, 
+                            anthem-anthembluepreferredhmo, 
+                            bluecrosscalifornia-bccadentalblue100200300, 
+                            bluecrosscalifornia-bluecrosscaadvantageppopreferreddirectaccessplus, 
+                            bluecrosscalifornia-bluecrosscappo, 
+                            bluecrosscalifornia-bluecrosscapriorityselecthmo, 
+                            bluecrosscalifornia-bluecrosscaselectplushmo, 
+                            anthem-anthempathwayxenhancedinddirectaccessnh, 
+                            anthem-anthemkeycareppo, 
+                            anthem-anthemcobluepriorityppo, 
+                            anthem-anthempathwayxindppodirectaccessct, 
+                            anthem-anthemblueaccessppo, 
+                            anthem-anthemblueopenaccesspos, 
+                            anthembluecrossblueshield-bronzedirectaccessplusgjqa, 
+                            bluecrosscalifornia-bluecrosscapathwayxppodirectaccess, 
+                            bluecrosscalifornia-bluecrosscapowerselecthmo, 
+                            bluecrosscalifornia-bluecrosscaselectppo, 
+                            anthem-anthemppocenturypreferredct, 
+                            anthembluecrossblueshield-golddirectaccesspluswhsa, 
+                            bluecrosscalifornia-bluecrosscacaliforniacarehmo, 
+                            anthem-blueviewvision, 
+                            anthem-anthemmodirectaccesswhsa, 
+                            anthem-anthemhealthkeepershmopos, 
+                            anthem-anthembluepreferredpluspos, 
+                            bluecrosscalifornia-bluecrosscapathwayxhmoguidedaccess, 
+                            anthem-anthempathwayxenhancedindguidedaccessme, 
+                            anthem-anthemwibluepriorityxindivdirectaccess, 
+                            anthem-anthemcopathway, 
+                            anthem-anthemkypathwayxinddirectaccess, 
+                            anthem-anthemnvpathwayppo, 
+                            anthem-anthemnvpathwayxhmoinddirectaccess, 
+                            anthem-anthembluepreferredselect, 
+                            bluecrosscalifornia-bluecrosscapathwayxtiereddirectaccess, 
+                            anthem-anthempathwayxtierhosphealthkeepersdirectaccessva, 
+                            anthem-anthemppo">Anthem</option>
+
+
+                            <option value="bluecrossblueshieldofgeorgia-bcbsgadirectaccesswhsa, 
+                            bluecrossblueshieldofgeorgia-bcbsgabluechoiceppo, 
+                            bluecrossblueshieldofgeorgia-bcbsgablueopenaccesspos, 
+                            bluecrossblueshieldofgeorgia-bcbsgadentalcomplete, 
+                            bluecrossblueshieldofgeorgia-bcbsgabluechoicehmo, 
+                            bluecrossblueshieldofgeorgia-bcbsgabluechoiceoptionpos">
+                                Blue Cross Blue Shield Georgia</option>
+
+                            <option value="healthnet-healthnetcaindividualfamilyppo,
+                            healthnet-healthnetcacoveredcaliforniapposmallgroup,
+                            healthnet-healthnetazppopos,
+                            healthnet-healthnetcabluegoldhmo,
+                            healthnet-hmoexcelcaresilvernetwork,
+                            healthnet-healthnetcommunitycarenetworkhmohix,
+                            healthnet-healthnetindividualfamilyppohix,
+                            healthnet-healthnetcahmowholecarenetwork,
+                            healthnet-healthnetorcommunitycare,
+                            healthnet-healthnetazhmoexcelcarenetwork,
+                            healthnet-hmoexcelcaresilvernetworkmedicarecob,
+                            healthnet-healthnetcahmosmartcare,
+                            healthnet-healthnetcaprimaryepo,
+                            healthnet-healthnetcalargegroupppo,
+                            healthnet-bluegoldhmo,
+                            healthnet-healthnetcacommunitycarenetworkhmo,
+                            healthnet-healthnetcahmoemployergroup,
+                            healthnet-healthnetorppo">
+                                Healthnet</option>
+
+                          
+
+                            <option value="humana-humanawacohmoxhix,
+                            humana-humanatampabaycorenet,
+                            humana-humanatampabayhumxhmox,
+                            humana-humanasanantoniohmoxhix,
+                            humana-humanasouthfloridahumxhmox,
+                            humana-humanasouthfloridahumxhmoxhix,
+                            humana-humanacohmoxhix,
+                            humana-humanadentalppo,
+                            humana-humanariograndeepoxhix,
+                            humana-humanapreferredppo,
+                            humana-humanatucsonhmox,
+                            humana-humanaphoenixhmox,
+                            humana-humanaatlantahmox,
+                            humana-humanaatlantahmoxhix,
+                            humana-humanachoicecarenetworkppo,
+                            humana-humanacolumbusgahmoxhix,
+                            humana-humanagoldplushmo,
+                            humana-humanahmopremierhix,
+                            humana-humanahoustonhmox,
+                            humana-humanacolumbusgahmox,
+                            humana-humanahmoselect,
+                            humana-humanaaustinhmoxhix,
+                            humana-humanatampabayhumxhmoxhix">
+                                Humana
+                            </option>
+
+                          
+
+
+
+
+                        </select>
+
+
+                    </div>
+
+                    <div class= "col-md-3">
+                        <label for="city">City</label>
+                        <!-- id="city-input" -->
+                        <input type="city" class="form-control" id="city-input">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="state">State</label>
+                        <!-- id="state-input" -->
+                        <select class="form-control selectpicker" id="state-input">
+                            <!-- examples -->
+                            <option value="AK">Alaska</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DC">District of Columbia</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="IA">Iowa</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MD">Maryland</option>
+                            <option value="ME">Maine</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MT">Montana</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NY">New York</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="PR">Puerto Rico</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VA">Virginia</option>
+                            <option value="VT">Vermont</option>
+                            <option value="WA">Washington</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+               
+
+                <div class="form-row">
+
+                        
+                    <div class="col-md-6">
+                        <!-- drop down form *might* be the best format for this depending on how many specialities are offered by the API -->
+                        <label class = "bottomlabel" for="specialty">Specialty</label>
+                        <!-- id="specialty-input" -->
+                        <select class="form-control selectpicker" id="specialty-input">
+                            <!-- examples -->
+                            <!-- ADD VALUES once we establish the full list -->
+                            <option value=" ">Show All</option>
+                            <option value="general-practitioner">General Practice</option>
+
+                            <option value="dentist">Dentistry</option>
+                        
+                            <option value="pedatrician">Pediatrics</option>
+
+                            <option data-divider="true"></option>
+
+                            <option value="dermatologist">Dermatology</option>
+                            <option value="oncologist">Oncology</option>
+                            <option value="dentist">Dentistry</option>
+                            <option value="orthopedic-surgeon">Orthopedic Surgery</option>
+                            <option value="ear-nose-throat-doctor">Otolaryngology</option>
+                            <option value="sport-physical-therapist">Sports Physical Therapy</option>
+                            <option value="sports-vision-optometrist">Sports Vision</option>
+                            <option value="surgery-hospice-and-palliative-medicine">Surgery Hospice and Palliative Medicine</option>
+                            <option value="sleep-medicine-doctor">Sleep Medicine</option>
+                            <option value="therapeutic-radiologist">Therapeutic Radiology</option>
+                            <option value="speech-therapist">Speech Therapy</option>
+                            <option value="spinal-cord-injury-physiatrist">Spinal Cord Injury Medicine</option>
+                            <option value="legal-medicine">Legal Medicine</option>
+                            <option value="medical-examiner-chiropractor">Chiropractic Medical Examiner</option>
+                            <option value="mental-health-nurse-practitioner">Psych/Mental Health Nurse Practitioner</option>
+                            <option value="micrographic-surgeon">MOHS-Micrographic Surgery</option>
+                            <option value="neuropathologist">Neuropathology</option>
+                            <option value="nuclear-cardiologist">Nuclear Cardiology</option>
+                            <option value="nuclear-imaging-doctor">Nuclear Imaging & Therapy</option>
+                            <option value="occupational-medicine-doctor">Occupational Medicine</option>
+                            <option value="body-imaging-radiologist">Body Imaging</option>
+                            <option value="critical-care-obgyn">Critical Care Medicine OBGYN</option>
+                            <option value="dental-laboratory-technician">Dental Laboratory Technician</option>
+                            <option value="dental-therapist">Dental Therapist</option>
+                            <option value="clinical-pathologist">Clinical Pathology</option>
+                            <option value="allergy-immunology-allergy">Allergy & Immunology Allergy</option>
+                            <option value="group-psychotherapy-psychologist">Group Psychotherapy</option>
+                            <option value="internal-medicine-clinical-laboratory-immunology">Internal Medicine Clinical & Laboratory Immunology</option>
+                            <option value="immunodermatologist">Clinical & Laboratory Dermatological Immunology</option>
+                            <option value="dermatopathology-doctor">Dermatopathology</option>
+                            <option value="occupational-therapy-assistant">Occupational Therapy Assistant</option>
+                            <option value="occupational-therapy-assistant-feeding-eating-swallowing">Occupational Therapy Assistant Feeding, Eating & Swallowing</option>
+                            <option value="occupational-therapy-assistant-low-vision">Occupational Therapy Assistant Low Vision</option>
+                            <option value="occupational-therapy-assistant-driving-and-community-mobility">Occupational Therapy Assistant Driving and Community Mobility</option>
+                            <option value="urologist">Urology</option>
+                            <option value="vision-therapy-optometrist">Vision Therapy</option>
+                            <option value="oral-pathologist">Oral and Maxillofacial Pathology</option>
+                            <option value="oral-surgeon">Oral & Maxillofacial Surgery</option>
+                            <option value="pain-management-doctor">Pain Medicine</option>
+                            <option value="pediatric-chiropractor">Chiropractic Pediatrics</option>
+                            <option value="pediatric-physical-therapist">Pediatric Physical Therapy</option>
+                            <option value="pediatric-rheumatologist">Pediatric Rheumatology</option>
+                            <option value="pediatric-pulmonologist">Pediatric Pulmonology</option>
+                            <option value="pediatric-dermatologist">Pediatric Dermatology</option>
+                            <option value="blood-banking-transfusion-doctor">Blood Banking & Transfusion Medicine</option>
+                            <option value="facial-plastic-surgeon">Facial Plastic Surgery</option>
+                            <option value="medical-microbiologist">Medical Microbiology</option>
+                            <option value="family-medicine-hospice-and-palliative-medicine">Family Medicine Hospice and Palliative Medicine</option>
+                            <option value="low-vision-rehabilitation-optometrist">Low Vision Rehabilitation</option>
+                            <option value="family-medicine-sleep-medicine">Family Medicine Sleep Medicine</option>
+                            <option value="pediatric-radiologist">Pediatric Radiology"</option>
+                            <option value="rehabilitation-chiropractor">Chiropractic Rehabilitation</option>
+                            <option value="radiology-podiatrist">Radiology Podiatry</option>
+                            <option value="psychiatry-neurology-forensic-psychiatry">Psychiatry & Neurology Forensic Psychiatry</option>
+                            <option value="pulmonary-function-technologist">Pulmonary Function Technologist</option>
+                            <option value="primary-care-nurse-practitioner">Primary Care Nurse Practitioner</option>
+                            <option value="professional-counselor">Professional Counseling</option>
+                            <option value="psychiatrist">Psychiatry</option>
+                            <option value="psychiatry-neurology-addiction-medicine">Psychiatry & Neurology Addiction Medicine</option>
+                            <option value="phlebology">Phlebology</option>
+                            <option value="physiatrist">Physical Medicine & Rehabilitation</option>
+                            <option value="pedorthist">Pedorthist</option>
+                            <option value="plastic-surgery-plastic-surgery-within-the-head-and-neck">Plastic Surgery Plastic Surgery Within the Head and Neck</option>
+                            <option value="plastic-surgery-specialist">Plastic Surgery</option>
+                            <option value="physical-therapist">Physical Therapy</option>
+                            <option value="podiatry-foot-surgeon">Foot Surgery</option>
+                            <option value="rehabilitation-counselor">Rehabilitation Counselor</option>
+                            <option value="respiratory-therapist-certified-pulmonary-diagnostics">Respiratory Therapist, Certified Pulmonary Diagnostics</option>
+                            <option value="rehabilitation-psychologist">Rehabilitation Psychology</option>
+                            <option value="respiratory-therapist-registered-pulmonary-diagnostic">Respiratory Therapist, Registered Pulmonary Diagnostics</option>
+                            <option value="respiratory-therapist-registered-snfsubacute-care">Respiratory Therapist, Registered SNF/Subacute Care</option>
+                            <option value="rheumatologist">Rheumatology</option>
+                            <option value="radiology-chiropractor">Chiropractic Radiology</option>
+                            <option value="reconstructive-orthopedist">Adult Reconstructive orthopedic Surgery</option>
+                            <option value="respiratory-therapist-certified-general-care">Respiratory Therapist, Certified General Care</option>
+                            <option value="respiratory-therapist-certified-educational">Respiratory Therapist, Certified Educational</option>
+                            <option value="respiratory-therapist-certified-geriatric-care">Respiratory Therapist, Certified Geriatric Care</option>
+                            <option value="respiratory-therapist-certified">Respiratory Therapist, Certified</option>
+                            <option value="preventive-medical-toxicologist">Preventive Medical Toxicology</option>
+                            <option value="primary-podiatry-doctor">Primary Podiatric Medicine</option>
+                            <option value="procedural-dermatologist">Procedural Dermatology</option>
+                            <option value="psychiatry-neurology-behavioral-neurology-neuropsychiatry">Psychiatry & Neurology Behavioral Neurology & Neuropsychiatry</option>
+                            <option value="psychiatry-neurology-diagnostic-neuroimaging">Psychiatry & Neurology Diagnostic Neuroimaging</option>
+                            <option value="psychiatry-neurology-psychosomatic-medicine">Psychiatry & Neurology Psychosomatic Medicine</option>
+                            <option value="respiratory-therapist-certified-critical-care">Respiratory Therapist, Certified Critical Care</option>
+                            <option value="sports-medicine-orthopedist">Orthopedic Sports Medicine</option>
+                            <option value="respiratory-therapist-certified-snfsubacute-care">Respiratory Therapist, Certified SNF/Subacute Care</option>
+                            <option value="respiratory-therapist-registered-critical-care">Respiratory Therapist, Registered Critical Care</option>
+                            <option value="school-counselor">School Counseling</option>
+                            <option value="techniciantechnologist-ocularist">Technician/Technologist Ocularist</option>
+                            <option value="acupuncturist">Acupuncture</option>
+                            <option value="acute-nurse-practitioner">Acute Care Nurse Practitioner</option>
+                            <option value="addiction-psychiatrist">Addiction Psychiatry</option>
+                            <option value="clinical-psychologist">Clinical Psychology</option>
+                            <option value="anaplastologist">Anaplastologist</option>
+                            <option value="aerospace-medicine-doctor">Aerospace Medicine</option>
+                            <option value="anesthesiologist">Anesthesiology</option>
+                            <option value="cardiopulmonary-physical-therapist">Cardiopulmonary Physical Therapy</option>
+                            <option value="health-service-psychologist">Health Service Psychology</option>
+                            <option value="developmental-therapist">Developmental Therapist</option>
+                            <option value="developmental-behavioral-pediatrician">Developmental Behavioral Pediatrics</option>
+                            <option value="forensic-psychologist">Forensic Psychology</option>
+                            <option value="geriatric-psychiatrist">Geriatric Psychiatry</option>
+                            <option value="clinical-pharmacology">Clinical Pharmacology</option>
+                            <option value="critical-care-doctor">Critical Care Medicine</option>
+                            <option value="hearing-aid-audiologist">Audiology & Hearing Aid Fitter</option>
+                            <option value="hospice-care-palliative-doctor">Hospice and Palliative Medicine</option>
+                            <option value="independent-medical-examiner">Independent Medical Examiner</option>
+                            <option value="internal-medicine-adolescent-medicine">Internal Medicine Adolescent Medicine</option>
+                            <option value="internal-medicine-bariatric-medicine">Internal Medicine Bariatric Medicine</option>
+                            <option value="internal-medicine-sports-medicine">Internal Medicine Sports Medicine</option>
+                            <option value="internist">Internal Medicine</option>
+                            <option value="laboratory-medicine-doctor">Clinical Pathology/Laboratory Medicine</option>
+                            <option value="interventional-cardiologist">Interventional Cardiology</option>
+                            <option value="medical-genetics-molecular-genetic-pathology">Medical Genetics Molecular Genetic Pathology</option>
+                            <option value="nutritionist">Nutrition Medicine</option>
+                            <option value="obstetrics-gynecology-female-pelvic-medicine-and-reconstructive-surgery">Obstetrics & Gynecology Female Pelvic Medicine and Reconstructive Surgery</option>
+                            <option value="obstetrics-gynecologist">Obstetrics & Gynecology</option>
+                            <option value="music-therapist">Music Therapist</option>
+                            <option value="neuromusculoskeletal-medicine-doctor">Neuromusculoskeletal Medicine & OMM</option>
+                            <option value="neonatal-critical-care-nurse-practitioner">Neonatal, Critical Care Nurse Practitioner</option>
+                            <option value="neurosurgeon">Neurological Surgery</option>
+                            <option value="nuclear-medicine-doctor">Nuclear Medicine</option>
+                            <option value="occupational-therapist-ergonomics">Occupational Therapist Ergonomics</option>
+                            <option value="occupational-therapist-environmental-modification">Occupational Therapist Environmental Modification</option>
+                            <option value="orthopedic-chiropractor">Chiropractic Orthopedics</option>
+                            <option value="otology-neurotologist">Otology & Neurotology</option>
+                            <option value="ophthalmologist">Ophthalmology</option>
+                            <option value="oncologist">Hematology & Oncology</option>
+                            <option value="diagnostic-ultrasound-radiologist">Diagnostic Ultrasound</option>
+                            <option value="cardiothoracic-surgeon">Cardiothoracic Surgery</option>
+                            <option value="emergency-medicine-hospice-and-palliative-medicine">Emergency Medicine Hospice and Palliative Medicine</option>
+                            <option value="pediatric-cardiologist">Pediatric Cardiology</option>
+                            <option value="environmental-preventive-medicine-doctor">Environmental Preventive Medicine</option>
+                            <option value="dietitian">Dietitian, Registered</option>
+                            <option value="mental-health-counselor">Mental Health Counseling</option>
+                            <option value="nephrologist">Nephrology</option>
+                            <option value="emergency-medicine-pediatrician">Pediatric Emergency Medicine</option>
+                            <option value="Pediatric Emergency Medicine">Preventive Medicine</option>
+                            <option value="podiatrist">Podiatry</option>
+                            <option value="pediatric-gastroenterologist">Pediatric Gastroenterology</option>
+                            <option value="pediatric-nurse-practitioner">Pediatric Nurse Practitioner</option>
+                            <option value="otolaryngology-facial-plastic-surgeon">Otolaryngology/Facial Plastic Surgery</option>
+                            <option value="orthotist">Orthotist</option>
+                            <option value="pastoral-counselor">Pastoral Counseling</option>
+                            <option value="pediatrician">Pediatrics</option>
+                            <option value="pediatric-optometrist">Pediatric Optometry</option>
+                            <option value="pediatric-medical-toxicologist">Medical Toxicology</option>
+                            <option value="addiction-medicine-anesthesiologist">Addiction Medicine</option>
+                            <option value="allergy-immunology-clinical-laboratory-immunology">Allergy & Immunology Clinical & Laboratory Immunology</option>
+                            <option value="adolescent-medicine-pediatrician">Adolescent Medicine</option>
+                            <option value="critical-care-pediatrician">Pediatric Critical Care Medicine</option>
+                            <option value="cytopathologist">Cytopathology</option>
+                            <option value="dental-assistant">Dental Assistant</option>
+                            <option value="anatomic-pathologist">Anatomic Pathology</option>
+                            <option value="art-therapist">Art Therapist</option>
+                            <option value="counceling-pshychologist">Counseling Psychology</option>
+                            <option value="denturist">Denturist</option>
+                            <option value="cognitive-behavioral-psychologist">Cognitive & Behavioral Psychology</option>
+                            <option value="child-psychiatrist">Child & Adolescent Psychiatry</option>
+                            <option value="dentist-dentist-anesthesiologist">Dentist Dentist Anesthesiologist</option>
+                            <option value="dermatopathologist">Dermatopathology</option>
+                            <option value="diagnostic-neuroimaging-radiologist">Diagnostic Neuroimaging</option>
+                            <option value="family-nurse-practitioner">Family Nurse Practitioner</option>
+                            <option value="hospice-palliative-medicine-anesthesiologist">Hospice and Palliative Medicine</option>
+                            <option value="hospice-palliative-physiatrist">Hospice and Palliative Medicine</option>
+                            <option value="hospitalist">Hospitalist</option>
+                            <option value="head-neck-plastic-surgeon">Plastic Surgery within the Head & Neck</option>
+                            <option value="general-practitioner">General Practice</option>
+                            <option value="general-surgeon">Surgery</option>
+                            <option value="gynecologist">Gynecology</option>
+                            <option value="internist-chiropractor">Chiropractic Internal Medicine</option>
+                            <option value="massage-therapist">Massage Therapy</option>
+                            <option value="neuroradiologist">Neuroradiology</option>
+                            <option value="nuclear-radiologist">Nuclear Radiology</option>
+                            <option value="occupational-therapist-human-factors">Occupational Therapist Human Factors</option>
+                            <option value="internal-medicine-allergy-immunology">Internal Medicine Allergy & Immunology</option>
+                            <option value="internal-medicine-magnetic-resonance-imaging-mri">Internal Medicine Magnetic Resonance Imaging (MRI)</option>
+                            <option value="podiatrist-general-practice">Podiatrist General Practice</option>
+                            <option value="occupational-therapist-physical-rehabilitation">Occupational Therapist Physical Rehabilitation</option>
+                            <option value="occupational-therapy-assistant-environmental-modification">Occupational Therapy Assistant Environmental Modification</option>
+                            <option value="medical-oncologist">Medical Oncology</option>
+                            <option value="nurse-practitioner">Nurse Practitioner</option>
+                            <option value="optometrist">Optometry</option>
+                            <option value="urology-female-pelvic-medicine-and-reconstructive-surgery">Urology Female Pelvic Medicine and Reconstructive Surgery</option>
+                            <option value="oral-radiologist">Oral and Maxillofacial Radiology</option>
+                            <option value="orthodontist">Orthodontics</option>
+                            <option value="diagnostic-radiologist">Diagnostic Radiology</option>
+                            <option value="endocrinologist">Endocrinology, Diabetes & Metabolism</option>
+                            <option value="endotontist">Endodontics</option>
+                            <option value="family-medicine-geriatric-medicine">Family Medicine Geriatric Medicine</option>
+                            <option value="family-medicine-bariatric-medicine">Family Medicine Bariatric Medicine</option>
+                            <option value="vivo-vitro-nuclear-medicine-doctor">In Vivo & In Vitro Nuclear Medicine</option>
+                            <option value="interventional-pain-management-doctor">Interventional Pain Medicine</option>
+                            <option value="mastectomy-fitter">Mastectomy Fitter</option>
+                            <option value="maternal-fetal-medicine-obgyn">Maternal & Fetal Medicine</option>
+                            <option value="pediatric-oncologist">Pediatric Hematology & Oncology</option>
+                            <option value="pediatric-pathologist">Pediatric Pathology</option>
+                            <option value="pediatric-transplant-hepatologist">Pediatric Transplant Hepatology</option>
+                            <option value="psychiatry-neurology-bariatric-medicine">Psychiatry & Neurology Bariatric Medicine</option>
+                            <option value="psychiatry-neurology-hospice-and-palliative-medicine">Psychiatry & Neurology Hospice and Palliative Medicine</option>
+                            <option value="podiatrist-public-medicine">Podiatrist Public Medicine</option>
+                            <option value="preventive-sports-medicine-doctor">Preventive Sports Medicine</option>
+                            <option value="neurologist">Neurology</option>
+                            <option value="neurodevelopmental-disability-pediatrician">Neurodevelopmental Disability</option>
+                            <option value="otolaryngic-allergist">Otolaryngic Allergy</option>
+                            <option value="neurology-physical-therapist">Neurology Physical Therapy</option>
+                            <option value="pediatric-nephrologist">Pediatric Nephrology</option>
+                            <option value="pediatric-neurologist">pediatric-neurologist</option>
+                            <option value="periodontist">Periodontics</option>
+                            <option value="plastic-surgery-surgery-of-the-hand">Plastic Surgery Surgery of the Hand</option>
+                            <option value="psychoanalyst">Psychoanalysis</option>
+                            <option value="psychologist">Psychology</option>
+                            <option value="respiratory-therapist-certified-patient-transport">Respiratory Therapist, Certified Patient Transport</option>
+                            <option value="rehabilitation-practitioner">Rehabilitation Practitioner</option>
+                            <option value="recreation-therapist">Recreation Therapist</option>
+                            <option value="radiation-oncologist">Radiation Oncology</option>
+                            <option value="rehabilitation-counselor-orientation-and-mobility-training-provider">Rehabilitation Counselor Orientation and Mobility Training Provider</option>
+                            <option value="techniciantechnologist-contact-lens-fitter">Technician/Technologist Contact Lens Fitter</option>
+                            <option value="techniciantechnologist-ophthalmic-assistant">Technician/Technologist Ophthalmic Assistant</option>
+                            <option value="techniciantechnologist-optometric-assistant">Technician/Technologist Optometric Assistant</option>
+                            <option value="school-psychologist">School Psychology</option>
+                            <option value="specialisttechnologist-athletic-trainer">Specialist/Technologist Athletic Trainer</option>
+                            <option value="respiratory-therapist-registered-pulmonary-rehabilitation">Respiratory Therapist, Registered Pulmonary Rehabilitation</option>
+                            <option value="surgery-surgical-critical-care">Surgery Surgical Critical Care</option>
+                            <option value="surgery-trauma-surgery">Surgery Trauma Surgery</option>
+                            <option value="surgical-oncologist">Surgical Oncology</option>
+                            <option value="techniciantechnologist-ophthalmic">Technician/Technologist Ophthalmic</option>
+                            <option value="respiratory-therapist-registered-general-care">Respiratory Therapist, Registered General Care</option>
+                            <option value="respiratory-therapist-registered-patient-transport">Respiratory Therapist, Registered Patient Transport</option>
+                            <option value="respiratory-therapist-registered-palliativehospice">Respiratory Therapist, Registered Palliative/Hospice</option>
+                            <option value="sports-chiropractor">Chiropractic Sports Medicine</option>
+                            <option value="specialisttechnologist">Specialist/Technologist</option>
+                            <option value="respiratory-therapist-registered-educational">Respiratory Therapist, Registered Educationa</option>
+                            <option value="respiratory-therapist-registered-emergency-care"></option>
+                            <option value="spine-orthopedist">Orthopedic Surgery of the Spine</option>
+                            <option value="respiratory-therapist-registered-home-health">Respiratory Therapist, Registered Home Health</option>
+                            <option value="techniciantechnologist-contact-lens">Technician/Technologist Contact Lens</option>
+                            <option value="trauma-orthopedist">Orthopedic Trauma</option>
+                            <option value="undersea-hyperbaric-medicine-doctor">Undersea and Hyperbaric Medicine</option>
+                         
+
+
+                        </select>
+                    </div>     
+                 
+                    <div class="col-md-6">
+                        <label class = "bottomlabel" for="submit">Find Your Doctor!</label>
+                        <br>
+                        <button type="submit" class="btn" id="clickme">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col">
+                <div class="card results resultscard">
+
+                    <div class="card-header results_main text-center">
+                        <h4>results <i class="fa fa-list-ul" style="font-size:24px"></i></h4>
+                    </div>
+<!-- sponsored result  -->
+<div class="card sponsor-card">
+    <div class="card-header sponsor-header">
+        Dr. Mantis Toboggan MD <span class="text-muted mute">sponsored result</span>
+    </div>
+    <li class="list-group-item">
+        <img class="mantis-pic"
+            src="https://yt3.ggpht.com/a/AGF-l79lBInvYWmbf1bEkI2aI8dm_AB1sxsz9bZrrw=s900-c-k-c0xffffffff-no-rj-mo"
+            alt="a handsome man, dr mantis toboggan">
+        <div class="mantis-bio col docbiotext">Dr. Mantis Toboggan is Philadelphia's, if not the world's, leading
+            doctor in anatomy, virology, and addiction science. The Doctor completed his
+            undergraduate studies at Temple University. He then went on to get his medical degree in
+            Vietnam
+            sometime during the 90s, while also running a sweatshop. In the 2000s he casually
+            revolutionized
+            podiatry by creating his renowned "Toe-Knife"; however, use of the tool was found
+            difficult
+            by most other practitioners which resulted in a nationwide epidemic of botched toes. Dr
+            Toboggan
+            currently practices out of Paddy's pub and the apartment he shares with Charlie. A
+            renaissance man, he
+            enjoys [REDACTED], [REDACTED], rum ham, [REDACTED], and gambling.
+        </div>
+    </li>
+    <li class="list-group-item">
+        phone: 2155553664
+    </li>
+    <li class="list-group-item">
+        1 Lincoln Financial Field Way, Philadelphia, PA 19148
+    </li>
+    <td class="list-group-item mantismap-li">
+        <img class="mantis-map" src="assets/images/mantis-map200pls.JPG">
+    </td>
+</div>
+                    <div class="container " id="docs-appear-here">
+                        <table class="table ">
+
+                            <tr>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                    <!-- this is how i figured out how to do the bio -->
+                    <!-- <div class = "container row "> 
+                        
+                        <img class = 'thedocs col-2' src=" https://asset2.betterdoctor.com/images/54bf21914214f84e79000326-2_thumbnail.jpg">
+
+                        <div class="col docbiotext"> and graduated in 1999. He completed his internship at St. Vincent’s Medical Center in Jacksonville, FL
+                             and his residency at Greenville Memorial Hospital in Greenville, SC. Dr. Gould also has a fellowship from 
+                             the International Academy of Medical Acupuncture. He graduated cum laude with his undergraduate Bachelor’s 
+                             degree in marine science and biology and has a Masters degree in Oceanography. Dr. Gould provides complete 
+                             family care for all ages from birth to geriatrics. Full pediatric and women’s well care are also offered. 
+                             He has a very diverse background with special interests in sports medicine & peak performance, integrative 
+                             medicine using a complementary and alternative approach when desired, healthy diet & nutrition, exercise, 
+                             herbal & anti-aging medicine and homeopathy. Dr. Gould was born in 
+
+                        </div>
+
+                        </div> -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                    crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous"></script>
+
+
+
+
+
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxqUekZhoGLhnTT57LPgjezVUPWx02C0M"></script>
+
+                <!-- Latest compiled and minified JavaScript -->
+                <script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+                <script src="https://code.jquery.com/jquery-3.4.1.js"
+                    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+
+                <script src="script.js"></script>
+
+                 <script src="patientData.js"></script>
+
+
+
+</body>
+
+
+</html>
