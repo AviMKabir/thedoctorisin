@@ -5,6 +5,9 @@ background: linear-gradient(45deg, rgba(29, 224, 153, 0.8), rgba(29, 200, 205, 0
 
 font-family: 'Poppins', sans-serif;
 
+height: 100%;
+width: 100%;
+
 
 }
 
@@ -29,6 +32,15 @@ h4 {
     text-shadow: 1px 1px rgba(68, 68, 68, 0.363);
 
     color: white;
+
+}
+
+.bottomlabel {
+
+
+
+margin-top: 10px;
+
 
 }
 

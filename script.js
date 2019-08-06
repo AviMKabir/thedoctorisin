@@ -218,7 +218,7 @@ $("#clickme").click(function () {
                 var mapTd = $("<td class = 'thedocs text-center align-middle'  style = 'width:100%; height: 200px;' id = 'googleMap_" + i + "' >" + map);
 
 
-                var docPhoneTd = $("<td class = 'thedocs thedocsphone text-center align-middle' >").text("phone: " + doctor_phone);
+                var docPhoneTd = $("<td class = 'thedocs thedocsphone text-center align-middle ' >"  ).text("phone: " + doctor_phone);
 
 
 
