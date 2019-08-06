@@ -59,11 +59,15 @@ Users can choose insurance, specialities, and state from a simple drop down menu
 
 [<img src="https://media.giphy.com/media/eepP91Q62ct92vFN7j/giphy.gif">](https://media.giphy.com/media/eepP91Q62ct92vFN7j/giphy.gif)
 
+[<img src="https://media.giphy.com/media/jsl0sEwRiwfxR05kE3/giphy.gif">](https://media.giphy.com/media/jsl0sEwRiwfxR05kE3/giphy.gif)
+
+[<img src="https://media.giphy.com/media/fYMHR8BRkIvoDKnNdL/giphy.gif">](https://media.giphy.com/media/fYMHR8BRkIvoDKnNdL/giphy.gif)
+
 
 
 ## Design
 
-[<img src="https://i.gyazo.com/f2b5adc99b5b77450fc670873f5a39d6.png">](https://i.gyazo.com/f2b5adc99b5b77450fc670873f5a39d6.png)
+[<img src="https://i.gyazo.com/09d73c90f093ff4831d57b3ff2cba8d0.jpg">](https://i.gyazo.com/09d73c90f093ff4831d57b3ff2cba8d0.jpg)
 
 [<img src="https://media.giphy.com/media/QWGRj8q7taWYFdjLK5/giphy.gif">](https://media.giphy.com/media/QWGRj8q7taWYFdjLK5/giphy.gif)
 
