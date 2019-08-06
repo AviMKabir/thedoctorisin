@@ -57,11 +57,9 @@ Text values were pulled from user inputs and stored into firebase which is linke
 
 Users can choose insurance, specialities, and state from a simple drop down menu and type in their city
 
-[<img src="https://media.giphy.com/media/SuI62JMj6TyN2v6vDv/giphy.gif">](https://media.giphy.com/media/SuI62JMj6TyN2v6vDv/giphy.gif)
+[<img src="https://media.giphy.com/media/eepP91Q62ct92vFN7j/giphy.gif">](https://media.giphy.com/media/eepP91Q62ct92vFN7j/giphy.gif)
 
-[<img src="https://media.giphy.com/media/Tg69lL58cTGoHLl7fb/giphy.gif">](https://media.giphy.com/media/Tg69lL58cTGoHLl7fb/giphy.gif)
 
-[<img src="https://media.giphy.com/media/MDa3t1kG5jSiGPPrO8/giphy.gif">](https://media.giphy.com/media/MDa3t1kG5jSiGPPrO8/giphy.gif)
 
 ## Design
 
